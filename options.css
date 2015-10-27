@@ -1,0 +1,49 @@
+<style>
+  body {
+    font-family: Avenir;
+    font-weight: thin;
+  }
+
+  .footer, .header, .navigation, .content {
+      border-style: double;
+      text-align: center;
+      margin: 10px;
+      padding: 20px;
+      background-color: #bdc3c7;
+      border-color: turquoise;
+  }
+
+    .header {
+      font-size: 100%;
+  }
+    
+    .navigation {
+      padding-right: 10px;
+      padding-bottom: 10px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+  }
+
+    .content {
+      float: right;
+      padding-right: 10px;
+    }
+
+      a {
+    text-align: center;
+    list-style: square;
+  }
+
+
+    a:link {
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: magenta;
+    }
+</style>

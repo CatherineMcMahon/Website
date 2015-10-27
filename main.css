@@ -1,0 +1,47 @@
+<style>
+body {
+}
+a {
+  text-align: center;
+  list-style: square;
+}
+
+.footer, .header, .navigation, .content {
+    border-style: double;
+    text-align: center;
+    margin: 10px;
+    padding: 5px;
+    background-color: #ecf0f1;
+}
+  .header {
+    font-size: 100%;
+    float:right; width: 90%;
+    float:top; width: 90%;
+    float:bottom; width: 90%;
+}
+  }
+  
+  .navigation {
+    float: left;
+    margin-right: 200px;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+  .content {
+    float: right;
+    width: 200px;
+  }
+
+  a:link {
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #FF00FF;
+  }
+</style>
