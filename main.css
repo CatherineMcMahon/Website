@@ -9,15 +9,12 @@ a {
 .footer, .header, .navigation, .content {
     border-style: double;
     text-align: center;
-    margin: 10px;
-    padding: 5px;
     background-color: #ecf0f1;
 }
   .header {
     font-size: 100%;
-    float:right; width: 90%;
-    float:top; width: 90%;
-    float:bottom; width: 90%;
+    font-style: bold;
+    display: block;
 }
   }
   
