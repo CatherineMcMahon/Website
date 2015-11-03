@@ -2,9 +2,9 @@ body {
     border:0;
     margin:0;
     background-color: #E6FF9A;
-}
+    text-align: center;
+  }
   .footer, .header, .navigation, .content {
-      text-align: center;
       overflow: auto;
       border-width: 1%;
       color: white;
@@ -39,7 +39,7 @@ body {
       height:79%;
       float:right;
       vertical-align: top;
-      position: relative;
+      position: center;
       background-color: #9EB3FF;
     }
 

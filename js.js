@@ -15,7 +15,7 @@
 	<div class="navigation">
 	<ul>
 		<li><a class = "HTML" href="html.html">html</a></li>
-		<li><a id = "PHP" href="php.php">php</a></li>
+		<li><a id = "PHP" href="php.html">php</a></li>
 		<li><a id = "JS" href="js.html">js</a></li>
 	</ul>
 	</div>
@@ -23,7 +23,7 @@
 	<div class="content">
 		<h1>Content</h1>
 		<a href="html.html">HTML</a>
-		<a href="php.php">PHP</a>
+		<a href="php.html">PHP</a>
 		<a href="js.html">JS</a>
 
 	</div>
