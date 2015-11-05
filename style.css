@@ -4,6 +4,7 @@ body {
     background-color: #E6FF9A;
     text-align: center;
   }
+
   .footer, .header, .navigation, .content {
       overflow: auto;
       border-width: 1%;
@@ -72,3 +73,4 @@ body {
     a:hover {
       color: #E6FF9A;
 }
+</style>
