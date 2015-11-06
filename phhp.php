@@ -41,18 +41,19 @@
 		<?php
 			if(isset($_GET['input'])) {
 			$userInput = $_GET['input'];
-		   	print( "This is user input: $userInput" );
+		   	print('This is user input: ' + "$userInput");
 
-		   	if($selectOption = $_POST['taskOption']=='bgcolor'){
+		   	if($selectOption = $_GET['taskOption']=='bgcolor'){
 			function changeBGColor( $userInput ) { 
 				$style = '';
 				if(strlen($userInput)!=6) {
-					print("Error; input a string of hexadecimal digits. (6 digits)");
+					print('Error: input a string of hexadecimal digits. (6 digits)');
 				} else {
 					$style = "style = 'background-color: $userInput';";
 				}
 			}
-		} elseif($selectOption = $_POST['taskOption']=='palindrome'){
+
+		} elseif($selectOption = $_GET['taskOption']=='palindrome') {
 			function Palindrome( $userInput ) { 
 				$array = array();
 				$reverse = strrev($userInput);
@@ -67,20 +68,40 @@
 				}
 				return $array;
 			}
-		} elseif($selectOption = $_POST['taskOption']=='list'){
+
+		} elseif($selectOption = $_GET['taskOption']=='list'){
 			function List( $userInput ) { 
 				$array = str_split ( $userInput );
 				for($i=0; $i<count($array); $i++) {
 					// if()
 				}
 			}
-		} elseif($selectOption = $_POST['taskOption']=='integer'){ 
+
+		} elseif($selectOption = $_GET['taskOption']=='integer'){ 
 			function Integer( $userInput ) { 
-				return ’No’; 
-			}*/
+				if(is_int($userInput)==true) {
+					print('Error: Input an integer. (6, 10, 200...)');
+				} else {
+					$sum = 0;
+					for($i=0; $i<$userInput; $i++) {
+						$factor = $userInput/$i;
+						if(is_int($factor) == true) {
+							$sum = $factor + $sum;
+						} else {
+							// do nothing
+						}
+				}
+
+				if($userInput > $sum) {
+					print("$userInput" + ' is a perfect number.');
+				} else {
+					print("$userInput" + ' is not a perfect number.');
+				}
+			}
 		}
 	}
-		?>
+	?>
+	
 	</div>
 
 	<div class="footer">
