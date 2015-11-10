@@ -5,6 +5,10 @@ body {
     text-align: center;
   }
 
+  .banana {
+    vertical-align: bottom;  
+  }
+
   .footer, .header, .navigation, .content {
       overflow: auto;
       border-width: 1%;
