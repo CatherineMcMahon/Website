@@ -7,6 +7,7 @@
 
 			if($selectOption = $_GET['selectOption']=='bgcolor') {
 				$style = "style = 'background-color:$userInput;'";
+
 			} else if ($_GET['selectOption']=='palindrome') {
 					$array = array();
 					for($i=0; $i<strlen($userInput); $i++) {
@@ -20,36 +21,32 @@
 							}
 						}
 					}
+					// $output = $array;
 
-					$output = implode(',', $array);
+					$output = implode(',', $array); // removes unique values, returns array with unduplicated strings
+
 			 } else if($_GET['selectOption']=='list') {
-			 	// $strlen = strlen($userInput);
-			 	// for( $i = 0; $i <= $strlen; $i++ ) {
-	 			// 	$char = substr( $userInput, $i, 1);
-	 			// }
-	 			// for($i=0; $i<$strlen; $i++) {
-	 			// 	if($char!=',') {
-	 			// 	$count++;
-	 			// } else {
-	 			// }
+					// removes commas, saves strings to new array	
+			 		$array = implode(',', $userInput);
+			 		// foreach($array as $a) {
+			 			// $newArray = array_unique($array);
+			 			// }
 
-					// removes commas, saves strings to new array		 	
-					$array = str_split ($userInput);
-					foreach($array as $a) {
-						while($a !=',') {
-							$string += str_pad($a, 1);
-						}
-						if($a ==',') {
-							$array_push($newArray, $string);
-							$array = str_replace($array, ',', '');
-						}
-					}
-					// removes unique values, returns array with unduplicated strings
-					$output = implode(',', $array);
+			 		$output = (array_unique($array));
+					// $output = explode(' ', $newArray); // removes unique values, returns array with unduplicated strings
 
-					// $array = explode(",", $userInput);
-					// $newArray = array_unique($newArray);
-					// echo $newArray;				
+					// $array = str_split ($userInput);
+					// foreach($array as $a) {
+					// 	if($a !=',') {
+					// 		$string += str_pad($a);
+					// 	} else($a ==',') {
+					// 		$array_push($newArray, $string);
+					// 		$array = str_replace($array, ',', '');
+					// 	}
+					// }
+
+						// $output = $Array;
+
 			} elseif($_GET['selectOption']=='integer') { 
 					if(is_numeric($userInput)==false) {
 						echo('Error: Input an integer. (6, 10, 200...)');
