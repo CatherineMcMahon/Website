@@ -1,5 +1,5 @@
-<html>
-          <head>
+            <html>
+            <head>
                 <title>Doll Dress Up Game</title>
             </head>
             
@@ -19,9 +19,9 @@
                 var drag = null;
                 var dress = document.getElementById('dress');
                 var pants = document.getElementById('pants');
-
+                var doll = document.getElementById('doll');
                 var images = [dress, pants];
-                    
+        
                 canvas.onmousedown = grabImage;
                 
                 function grabImage(e){
@@ -30,7 +30,7 @@
                         var source = images[i];
                         console.log( source.clientX + " " + source.width);
                         if( e.clientX >= source.clientX && e.clientX <= (source.clientX + source.width) ){
-                            //if( e.clientY >= source.clientY && e.clientY <= source.clientHeight + source.clientY )
+                            // if( e.clientY >= source.clientY && e.clientY <= source.clientHeight + source.clientY )
                                 source.style.position = 'absolute';
                                 console.log(source);
                                 drag = source;
@@ -45,9 +45,33 @@
                         make_base();
                     }
                 }
+                
                 function dropImage(e){
+                    for( i = 0; i < imgs.length; i++ ){
+                        var source = imgs[i];
+                        if(source=='dress' || source='top'){
+                            if(e.clientX<=(doll.clientX+doll.width) && e.clientY<=((doll.height*(1/6))+doll.clientX) && e.clientY>=(doll.clientY*0.5)) {
+                                //put in pos
+                            } else {
+                                //put in 'closet'
+                            }
+                        } else if(source=='pants'){
+                            if(e.clientX<=(doll.clientX+doll.width) && e.clientY<=((doll.height*(1/2))+doll.clientX) && e.clientY>=(doll.clientY*0.5)) {
+                                //put in pos
+                            } else {
+                                //put in 'closet'
+                            }
+                        } else if(source=='shoes'){
+                            if(e.clientX<=(doll.clientX+doll.width) && e.clientY<=((doll.height*(1/6))+doll.clientX) && e.clientY>=(doll.clientY*0.5)) {
+                                //put in pos
+                            } else {
+                                //put in 'closet'
+                            }
+                    } //end loop
+
                     drag = null;
                 }
+                
             function init() {
                 var dress = document.getElementById('dress');
                 dress.clientX = canvas.width - 460;
@@ -59,12 +83,11 @@
             function make_base()
             {
                 context.clearRect(0,0, canvas.width, canvas.height);
-                var img = document.getElementById('doll');
-                context.drawImage(img, 40, 20, 350, 640);
-                img.mozImageSmoothingEnabled = true;
-                img.webkitImageSmoothingEnabled = true;
-                img.msImageSmoothingEnabled = true;
-                img.imageSmoothingEnabled = true;
+                context.drawImage(doll, 40, 20, 350, 640);
+                doll.mozImageSmoothingEnabled = true;
+                doll.webkitImageSmoothingEnabled = true;
+                doll.msImageSmoothingEnabled = true;
+                doll.imageSmoothingEnabled = true;
                 context.font = "30px Cambria";
                 context.fillText("YOUR MODEL",15,50);
                 context.font = "30px Cambria";
