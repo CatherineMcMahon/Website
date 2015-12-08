@@ -8,6 +8,7 @@
                 <canvas id="drawing" style="border:1px solid #000000;">
                 <img id='dress' src='dress.jpg' style='display:none; position:absolute;' />
                 <img id='pants' src='pants.jpg' style='display:none; position:absolute;' />
+                <img id='sun' src='sun.png' style='display:none; positionLabsolute;' />
                 
             </canvas>
             
@@ -17,10 +18,13 @@
                 canvas.height = 700;
                 var context = canvas.getContext("2d");
                 var drag = null;
-                var dress = document.getElementById('dress');
                 var pants = document.getElementById('pants');
+                var dress = document.getElementById('dress');
+                var sun = document.getElementById('sun');
                 var doll = document.getElementById('doll');
-                var images = [dress, pants];
+                doll.clientX = 100;
+                doll.clientY = 200;
+                var images = [dress, pants, sun];
         
                 canvas.onmousedown = grabImage;
                 
@@ -28,11 +32,11 @@
                                 
                     for( i = 0; i < images.length; i++ ){
                         var source = images[i];
-                        console.log( source.clientX + " " + source.width);
+                        // console.log( source.clientX + " " + source.width);
                         if( e.clientX >= source.clientX && e.clientX <= (source.clientX + source.width) ){
-                            // if( e.clientY >= source.clientY && e.clientY <= source.clientHeight + source.clientY )
+                            if( e.clientY <= source.clientY && e.clientY >= (source.height + source.clientY))
                                 source.style.position = 'absolute';
-                                console.log(source);
+                                // console.log(source);
                                 drag = source;
                         }
                     }
@@ -47,29 +51,20 @@
                 }
                 
                 function dropImage(e){
-                    for( i = 0; i < imgs.length; i++ ){
-                        var source = imgs[i];
-                        if(source=='dress' || source='top'){
-                            if(e.clientX<=(doll.clientX+doll.width) && e.clientY<=((doll.height*(1/6))+doll.clientX) && e.clientY>=(doll.clientY*0.5)) {
-                                //put in pos
-                            } else {
-                                //put in 'closet'
+                            if(e.clientX<=(doll.clientX+doll.width) && e.clientX >= doll.clientX ) {
+                                // source.style.position = 'absolute';
+                                drag.clientX = (doll.clientX+140);
+                                console.log("X" + drag.clientX + " " + doll.clientX);
+                                drag.clientY = (doll.clientY + 100);
+                                console.log("Y" + drag.clientY);
+                                // make_base();
+                                console.log("go");
                             }
-                        } else if(source=='pants'){
-                            if(e.clientX<=(doll.clientX+doll.width) && e.clientY<=((doll.height*(1/2))+doll.clientX) && e.clientY>=(doll.clientY*0.5)) {
-                                //put in pos
-                            } else {
-                                //put in 'closet'
-                            }
-                        } else if(source=='shoes'){
-                            if(e.clientX<=(doll.clientX+doll.width) && e.clientY<=((doll.height*(1/6))+doll.clientX) && e.clientY>=(doll.clientY*0.5)) {
-                                //put in pos
-                            } else {
-                                //put in 'closet'
-                            }
-                    } //end loop
-
+                            console.log("go2");
                     drag = null;
+                    console.log("go3");
+                                                    make_base();
+
                 }
                 
             function init() {
@@ -78,12 +73,15 @@
                 dress.clientY = 110;
                 pants.clientX = canvas.width - 250;
                 pants.clientY = 310;
+                sun.clientX = canvas.width - 240;
+                sun.clientY = 180;
                 make_base();
             }
+
             function make_base()
             {
                 context.clearRect(0,0, canvas.width, canvas.height);
-                context.drawImage(doll, 40, 20, 350, 640);
+                context.drawImage(doll, 100, 200, 350, 640);
                 doll.mozImageSmoothingEnabled = true;
                 doll.webkitImageSmoothingEnabled = true;
                 doll.msImageSmoothingEnabled = true;
@@ -94,13 +92,18 @@
                 context.fillText("YOUR CLOSET",580,50);
                 context.font = "19px Cambria";
                 context.fillText("hint: drag and drop clothes to style her!",535,80);
-                context.drawImage(dress, dress.clientX, dress.clientY, 140, 225);
                 context.drawImage(pants, pants.clientX, pants.clientY, 140, 225);
+                console.log("drawn1");
+                context.drawImage(dress, dress.clientX, dress.clientY, 140, 225);
+                console.log("drawn2");
+                context.drawImage(sun, sun.clientX, sun.clientY, 85, 29);
+                console.log("drawn3"); 
+                drag != null;           
             }
             window.onload = init;
             canvas.addEventListener('mousedown', grabImage, true);
             canvas.addEventListener('mousemove', dragImage, true);
-            canvas.addEventListener('mouseup',dropImage, true);
+            canvas.addEventListener('mouseup', dropImage, true);
     </script>
  </body>
 </html>
