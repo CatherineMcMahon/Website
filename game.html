@@ -1,4 +1,4 @@
-            <html>
+            <html> 
             <head>
                 <title>Doll Dress Up Game</title>
             </head>
@@ -8,8 +8,8 @@
                 <canvas id="drawing" style="border:1px solid #000000;">
                 <img id='dress' src='dress.jpg' style='display:none; position:absolute;' />
                 <img id='pants' src='pants.jpg' style='display:none; position:absolute;' />
-                <img id='sun' src='sun.png' style='display:none; positionLabsolute;' />
-                
+                <img id='shirt' src='shirt.jpg' style='display:none; position:absolute;' />
+                <img id='bg' src='background.jpg' style='display:none; position:absolute;' />
             </canvas>
             
             <script type="text/javascript">
@@ -20,27 +20,38 @@
                 var drag = null;
                 var pants = document.getElementById('pants');
                 var dress = document.getElementById('dress');
-                var sun = document.getElementById('sun');
                 var doll = document.getElementById('doll');
+                var shirt = document.getElementById('shirt');
+                var bg = document.getElementById('bg');
                 doll.clientX = 100;
                 doll.clientY = 200;
-                var images = [dress, pants, sun];
+                var images = [dress, shirt, pants];
+                // var images = {top: dress, shirt, bottom: pants};
         
                 canvas.onmousedown = grabImage;
                 
                 function grabImage(e){
                                 
+                    // for(var x in images) {
+                    //       if( e.clientX >= x.clientX && e.clientX <= (x.clientX + x.width) ){
+                    //         if( e.clientY <= x.clientY && e.clientY >= (x.height + x.clientY))
+                    //             x.style.position = 'absolute';
+                    //             console.log("source: " +x);
+                    //             drag = x;
+                    //     }
+                    // }                    
+                    
                     for( i = 0; i < images.length; i++ ){
                         var source = images[i];
-                        // console.log( source.clientX + " " + source.width);
                         if( e.clientX >= source.clientX && e.clientX <= (source.clientX + source.width) ){
                             if( e.clientY <= source.clientY && e.clientY >= (source.height + source.clientY))
                                 source.style.position = 'absolute';
-                                // console.log(source);
+                                console.log("source: " +source);
                                 drag = source;
                         }
                     }
                 }
+                
                 function dragImage(e) {
                     if( drag != null ){
                         drag.style.position = 'absolute';
@@ -51,53 +62,64 @@
                 }
                 
                 function dropImage(e){
-                            if(e.clientX<=(doll.clientX+doll.width) && e.clientX >= doll.clientX ) {
-                                // source.style.position = 'absolute';
-                                drag.clientX = (doll.clientX+140);
-                                console.log("X" + drag.clientX + " " + doll.clientX);
-                                drag.clientY = (doll.clientY + 100);
-                                console.log("Y" + drag.clientY);
-                                // make_base();
-                                console.log("go");
-                            }
-                            console.log("go2");
-                    drag = null;
-                    console.log("go3");
-                                                    make_base();
-
+                    
+                    //use an associative array
+                    
+                    if(drag == images[0]) { //if dress is chosen 
+                    if(e.clientX<=(doll.clientX+doll.width) && e.clientX >= doll.clientX ) {
+                        drag.clientX = (doll.clientX + 122);
+                        drag.clientY = (doll.clientY + 108);
+                    }
+                        drag = null;
+                        make_base();
+                } else if(drag == images[2]) { //if pants is chosen
+                    if(e.clientX<=(doll.clientX+doll.width) && e.clientX >= doll.clientX ) {
+                        drag.clientX = (doll.clientX + 155);
+                        drag.clientY = (doll.clientY + 250);
+                    }
+                        drag = null;
+                        make_base();
+                }  else if(drag == images[1]) { //if shirt is chosen
+                    if(e.clientX<=(doll.clientX+doll.width) && e.clientX >= doll.clientX ) {
+                        drag.clientX = (doll.clientX + 160);
+                        drag.clientY = (doll.clientY + 90);
+                    }
+                            drag = null;
+                            make_base();
                 }
+            }
+        
                 
             function init() {
                 var dress = document.getElementById('dress');
-                dress.clientX = canvas.width - 460;
-                dress.clientY = 110;
-                pants.clientX = canvas.width - 250;
-                pants.clientY = 310;
-                sun.clientX = canvas.width - 240;
-                sun.clientY = 180;
+                dress.clientX = canvas.width - 520;
+                dress.clientY = 100;
+                pants.clientX = canvas.width - 310;
+                pants.clientY = 340;
+                shirt.clientX = canvas.width - 145;
+                shirt.clientY = 500;
                 make_base();
             }
 
             function make_base()
             {
+                
                 context.clearRect(0,0, canvas.width, canvas.height);
-                context.drawImage(doll, 100, 200, 350, 640);
                 doll.mozImageSmoothingEnabled = true;
                 doll.webkitImageSmoothingEnabled = true;
                 doll.msImageSmoothingEnabled = true;
                 doll.imageSmoothingEnabled = true;
+                context.drawImage(bg, 0, 0, canvas.width, canvas.height);
+                context.drawImage(doll, 100, 200, 350, 640);
                 context.font = "30px Cambria";
                 context.fillText("YOUR MODEL",15,50);
                 context.font = "30px Cambria";
                 context.fillText("YOUR CLOSET",580,50);
                 context.font = "19px Cambria";
                 context.fillText("hint: drag and drop clothes to style her!",535,80);
-                context.drawImage(pants, pants.clientX, pants.clientY, 140, 225);
-                console.log("drawn1");
-                context.drawImage(dress, dress.clientX, dress.clientY, 140, 225);
-                console.log("drawn2");
-                context.drawImage(sun, sun.clientX, sun.clientY, 85, 29);
-                console.log("drawn3"); 
+                context.drawImage(pants, pants.clientX, pants.clientY, 120, 130);
+                context.drawImage(dress, dress.clientX, dress.clientY, 180, 255);
+                context.drawImage(shirt, shirt.clientX, shirt.clientY, 107, 118);
                 drag != null;           
             }
             window.onload = init;
